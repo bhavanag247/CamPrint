@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Print Styling & Time Slot</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+      color: #111827;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+    }
+
+    .print-card {
+      width: 100%;
+      max-width: 720px;
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 28px 32px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 22px;
+      color: #1f2937;
+    }
+
+    .preview-box {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .preview-box p {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .preview-image {
+      width: 100%;
+      max-height: 360px;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+    }
+
+    label {
+      display: block;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    select {
+      width: 100%;
+      padding: 11px 12px;
+      font-size: 14px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    select:hover {
+      border-color: #9ca3af;
+    }
+
+    select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+    }
+
+    .price-box {
+      margin: 20px 0;
+      padding: 14px;
+      background: #f0f9ff;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: 600;
+      color: #0369a1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #ffffff;
+      transition: 0.15s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    @media (max-width: 600px) {
+      .print-card {
+        padding: 22px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="print-card">
+    <h2>Step 5: Print Styling & Time Slot</h2>
+
+    <!-- Preview -->
+    <div class="preview-box">
+      <p>Reference Preview</p>
+      <img
+        src="sample-preview.png"
+        alt="Document Preview"
+        class="preview-image"
+      />
+    </div>
+
+    <!-- Options -->
+    <label>Number of Copies</label>
+    <select id="copies">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+    </select>
+
+    <label>Print Type</label>
+    <select id="printType">
+      <option>Black & White</option>
+      <option>Colour</option>
+    </select>
+
+    <label>Paper Size</label>
+    <select id="paperSize">
+      <option>A4</option>
+      <option>A3</option>
+    </select>
+
+    <label>Time Slot (15 min intervals)</label>
+    <select id="timeSlot">
+      <option value="">Select Time Slot</option>
+    </select>
+
+    <!-- Price -->
+    <div class="price-box">
+      <span>Total Price</span>
+      <span id="price">₹0</span>
+    </div>
+
+    <button onclick="confirmOrder()">Confirm Print Options</button>
+  </div>
+
+  <script>
+    const PRICE_CHART = {
+      A4: { "Black & White": 1, Colour: 5 },
+      A3: { "Black & White": 2, Colour: 10 }
+    };
+
+    const copiesEl = document.getElementById("copies");
+    const printTypeEl = document.getElementById("printType");
+    const paperSizeEl = document.getElementById("paperSize");
+    const timeSlotEl = document.getElementById("timeSlot");
+    const priceEl = document.getElementById("price");
+
+    function generateTimeSlots() {
+      for (let h = 9; h < 18; h++) {
+        for (let m = 0; m < 60; m += 15) {
+          const hour = String(h).padStart(2, "0");
+          const min = String(m).padStart(2, "0");
+          const option = document.createElement("option");
+          option.value = `${hour}:${min}`;
+          option.textContent = `${hour}:${min}`;
+          timeSlotEl.appendChild(option);
+        }
+      }
+    }
+
+    function updatePrice() {
+      const copies = Number(copiesEl.value);
+      const type = printTypeEl.value;
+      const size = paperSizeEl.value;
+      const basePrice = PRICE_CHART[size][type];
+      priceEl.textContent = `₹${basePrice * copies}`;
+    }
+
+    function confirmOrder() {
+      if (!timeSlotEl.value) {
+        alert("Please select a time slot.");
+        return;
+      }
+
+      alert("Print options confirmed successfully!");
+    }
+
+    copiesEl.addEventListener("change", updatePrice);
+    printTypeEl.addEventListener("change", updatePrice);
+    paperSizeEl.addEventListener("change", updatePrice);
+
+    generateTimeSlots();
+    updatePrice();
+  </script>
+
+</body>
+</html>
