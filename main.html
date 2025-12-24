@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Print Styling & Time Slot</title>
+  <title>CamPrint – Print Styling & Time Slot</title>
 
   <style>
     * {
@@ -16,6 +16,41 @@
       background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
       color: #111827;
       min-height: 100vh;
+    }
+
+    /* NAV BAR */
+    .navbar {
+      width: 100%;
+      background: #ffffff;
+      padding: 14px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 700;
+      color: #2563eb;
+    }
+
+    .nav-links a {
+      margin-left: 24px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: #374151;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    /* MAIN CONTENT */
+    .content-wrapper {
+      min-height: calc(100vh - 70px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -93,149 +128,3 @@
       background: #f0f9ff;
       border-radius: 10px;
       font-size: 17px;
-      font-weight: 600;
-      color: #0369a1;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: #ffffff;
-      transition: 0.15s ease;
-    }
-
-    button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
-    }
-
-    button:active {
-      transform: translateY(0);
-      box-shadow: none;
-    }
-
-    @media (max-width: 600px) {
-      .print-card {
-        padding: 22px;
-      }
-
-      h2 {
-        font-size: 20px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="print-card">
-    <h2>Step 5: Print Styling & Time Slot</h2>
-
-    <!-- Preview -->
-    <div class="preview-box">
-      <p>Reference Preview</p>
-      <img
-        src="sample-preview.png"
-        alt="Document Preview"
-        class="preview-image"
-      />
-    </div>
-
-    <!-- Options -->
-    <label>Number of Copies</label>
-    <select id="copies">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="5">5</option>
-      <option value="10">10</option>
-      <option value="20">20</option>
-      <option value="50">50</option>
-    </select>
-
-    <label>Print Type</label>
-    <select id="printType">
-      <option>Black & White</option>
-      <option>Colour</option>
-    </select>
-
-    <label>Paper Size</label>
-    <select id="paperSize">
-      <option>A4</option>
-      <option>A3</option>
-    </select>
-
-    <label>Time Slot (15 min intervals)</label>
-    <select id="timeSlot">
-      <option value="">Select Time Slot</option>
-    </select>
-
-    <!-- Price -->
-    <div class="price-box">
-      <span>Total Price</span>
-      <span id="price">₹0</span>
-    </div>
-
-    <button onclick="confirmOrder()">Confirm Print Options</button>
-  </div>
-
-  <script>
-    const PRICE_CHART = {
-      A4: { "Black & White": 1, Colour: 5 },
-      A3: { "Black & White": 2, Colour: 10 }
-    };
-
-    const copiesEl = document.getElementById("copies");
-    const printTypeEl = document.getElementById("printType");
-    const paperSizeEl = document.getElementById("paperSize");
-    const timeSlotEl = document.getElementById("timeSlot");
-    const priceEl = document.getElementById("price");
-
-    function generateTimeSlots() {
-      for (let h = 9; h < 18; h++) {
-        for (let m = 0; m < 60; m += 15) {
-          const hour = String(h).padStart(2, "0");
-          const min = String(m).padStart(2, "0");
-          const option = document.createElement("option");
-          option.value = `${hour}:${min}`;
-          option.textContent = `${hour}:${min}`;
-          timeSlotEl.appendChild(option);
-        }
-      }
-    }
-
-    function updatePrice() {
-      const copies = Number(copiesEl.value);
-      const type = printTypeEl.value;
-      const size = paperSizeEl.value;
-      const basePrice = PRICE_CHART[size][type];
-      priceEl.textContent = `₹${basePrice * copies}`;
-    }
-
-    function confirmOrder() {
-      if (!timeSlotEl.value) {
-        alert("Please select a time slot.");
-        return;
-      }
-
-      alert("Print options confirmed successfully!");
-    }
-
-    copiesEl.addEventListener("change", updatePrice);
-    printTypeEl.addEventListener("change", updatePrice);
-    paperSizeEl.addEventListener("change", updatePrice);
-
-    generateTimeSlots();
-    updatePrice();
-  </script>
-
-</body>
-</html>
