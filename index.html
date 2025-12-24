@@ -2,697 +2,305 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>CamPrint | Print Styling & Time Slot</title>
-
+  <title>CamPrint | Print Styling</title>
   <style>
-    .auth-wrapper {
-    min-height: 100vh;
+.SignerDigitalExtPopupModal {
+	font-family: Calibri, sans-serif;
+	display: none;
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+	display: flex;
+	left: 0;
+	top: 0;
+	position: fixed;
+	z-index: 9999;
+}
+
+.SignerDigitalExtClose {
+    position: absolute;
+    top: 30px;
+    right: 525px;
+    background: none;
+    border: none;
+    color: black;
+    font-size: 25px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+.SignerDigitalExtLicSitesClose {
+	background: none;
+	border: none;
+	color: black;
+	font-size: 25px;
+	cursor: pointer;
+	line-height:1;
+	transition: color 0.3s ease-in-out;
+}
+
+.SignerDigitalExtSelCertContainer {
+    font-family: Calibri, sans-serif;
+    background-color: #e6faf6;
+    top: 50px;
+	position: relative;
+	padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 30px auto;
+    width: 420px;
+    height: 420px;
+}
+
+.SignerDigitalExtSCPinContainer {
+    font-family: Calibri, sans-serif;
+    background-color: #e6faf6;
+    top: 50px;
+	position: relative;
+	padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 30px auto;
+    width: 360px;
+    height: 180px;
+}
+
+#SDCertListContainer {
+    margin-top: 10px;
+    max-height: 300px;
+    background-color: white;
+    overflow-y: auto;
+    padding: 0px;
+    border-radius: 5px;
+}
+
+
+.SignerDigitalExtImg {
+    text-align: start;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px
-}
-
-.auth-container {
-    display: flex;
-    gap: 30px;
-    padding: 40px;
-    max-width: 900px;
-    width: 100%
-}
-
-.auth-card {
-    flex: 1;
-    padding: 30px;
-    border-radius: 16px;
-    background: #ffffff26;
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,.25);
-    display: flex;
-    flex-direction: column;
-    gap: 16px
-}
-
-body.dark .auth-card {
-    background: #00000059;
-    border: 1px solid rgba(255,255,255,.15)
-}
-
-.auth-card h2 {
-    margin-bottom: 10px;
-    text-align: center
-}
-
-.auth-card input {
-    padding: 12px 14px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    font-size: 14px
-}
-
-body.dark .auth-card input {
-    background: #111;
-    color: #fff
-}
-
-.auth-card input::placeholder {
-    opacity: .7
-}
-
-@media(max-width: 768px) {
-    .auth-container {
-        flex-direction:column
-    }
-}
-
-.dashboard-wrapper {
-    min-height: 100vh;
-    padding: 40px 30px
-}
-
-.dashboard-title {
-    text-align: center;
-    margin-bottom: 40px
-}
-
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
-    gap: 30px;
-    max-width: 1100px;
-    margin: 0 auto
-}
-
-.dash-card {
-    padding: 30px;
-    border-radius: 18px;
-    background: #ffffff59;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(0,128,128,.25);
-    box-shadow: 0 8px 30px #00000014,inset 0 0 .5px #fff9;
-    display: flex;
-    flex-direction: column;
-    gap: 14px
-}
-
-body.dark .dash-card {
-    background: #00000059;
-    border: 1px solid rgba(255,255,255,.15);
-    box-shadow: 0 8px 30px #0009,inset 0 0 .5px #ffffff14
-}
-
-.dash-card h3 {
-    margin-bottom: 6px
-}
-
-.dash-card p {
-    opacity: .85
-}
-
-.dash-card input[type=file] {
-    margin-top: 10px
-}
-
-.btn-ghost {
-    background: transparent;
-    border: 1px dashed currentColor;
-    padding: 8px 14px;
-    border-radius: 10px;
-    cursor: pointer
-}
-
-.file-name {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    max-width: 100%
-}
-
-.file-name span {
-    max-width: 160px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block
-}
-
-.file-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 12px
-}
-
-.file-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px
-}
-
-.file-item span {
-    max-width: 180px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis
-}
-
-:root {
-    --bg: #f0fdfa;
-    --card: rgba(255,255,255,.22);
-    --accent: #04b8a8;
-    --accent-dark: #0e766e;
-    --accent-light: #99f6e4;
-    --radius: 16px;
-    --muted: #64748b;
-    --text: #0f172a;
-    --container: 1100px
-}
-
-body.dark {
-    --bg: #020617;
-    --card: rgba(15,23,42,.55);
-    --text: #e5e7eb;
-    --muted: #9ca3af;
-    --accent: #2dd4bf;
-    --accent-dark: #14b8a6;
-    --accent-light: rgba(45,212,191,.35)
-}
-
-* {
-    box-sizing: border-box
-}
-
-html,body,#root {
-    margin: 0;
-    padding: 0;
-    height: 100%
-}
-
-body {
-    font-family: Inter,Segoe UI,Roboto,Arial,sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
-}
-
-* {
-    transition: background .25s ease,box-shadow .25s ease,border-color .25s ease,transform .25s ease
-}
-
-.container {
-    max-width: var(--container);
-    margin: 0 auto;
-    padding: 0 20px
-}
-
-@keyframes glassGlow {
-    0% {
-        box-shadow: 0 4px 20px #0d94881a
-    }
-
-    50% {
-        box-shadow: 0 6px 30px #0d948840
-    }
-
-    to {
-        box-shadow: 0 4px 20px #0d94881a
-    }
-}
-
-.site-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    background: #ffffff26;
-    border-bottom: 1px solid rgba(13,148,136,.25);
-    animation: glassGlow 8s ease-in-out infinite
-}
-
-.nav-inner {
-    max-width: var(--container);
-    margin: 0 auto;
-    padding: 14px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center
-}
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--accent-dark)
-}
-
-.logo-mark {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: linear-gradient(180deg,rgba(13,148,136,.2),transparent);
-    box-shadow: 0 6px 14px #0d948833
-}
-
-.logo-img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    border-radius: 8px;
-    filter: drop-shadow(0 4px 10px rgba(13,148,136,.25))
-}
-
-.nav-links {
-    display: flex;
-    gap: 22px;
-    list-style: none;
-    padding: 0;
-    margin: 0
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text);
-    opacity: .92;
-    font-weight: 600
-}
-
-.btn {
-    padding: 8px 14px;
-    border-radius: 999px;
-    cursor: pointer;
-    font-weight: 600;
-    border: 0
-}
-
-.btn-primary {
-    background: #0d94884d;
-    border: 1px solid rgba(13,148,136,.35);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-    color: #065f56;
-    box-shadow: 0 4px 18px #0d948840
-}
-
-.btn-primary:hover {
-    background: #0d948873;
-    box-shadow: 0 6px 28px #0d948859;
-    transform: translateY(-2px)
-}
-
-.btn-ghost {
-    background: #ffffff1f;
-    border: 1px solid rgba(13,148,136,.25);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-    color: var(--accent-dark)
-}
-
-.btn-ghost:hover {
-    background: #ffffff40;
-    box-shadow: 0 4px 18px #0d948840;
-    transform: translateY(-2px)
-}
-
-.hero {
-    padding: 56px 0;
-    display: flex;
-    gap: 36px;
-    align-items: center
-}
-
-.hero-left {
-    flex: 1
-}
-
-.hero h1 {
-    margin: 0 0 18px;
-    font-size: 44px;
-    letter-spacing: -.5px
-}
-
-.hero p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 16px;
-    max-width: 640px
-}
-
-.upload-preview,.step,.plan {
-    background: var(--card);
-    border-radius: var(--radius);
-    border: 1px solid rgba(13,148,136,.25);
-    padding: 22px;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 4px 20px #0d948826;
-    animation: glassGlow 10s ease-in-out infinite
-}
-
-.upload-preview:hover {
-    box-shadow: 0 6px 28px #0d94884d;
-    transform: translateY(-4px)
-}
-
-.drag-card {
-    border-radius: 12px;
-    border: 2px dashed rgba(13,148,136,.35);
-    padding: 36px;
-    text-align: center;
-    margin-top: 20px
-}
-
-.section {
-    padding: 56px 0
-}
-
-.section h2 {
-    margin: 0 0 18px;
-    font-size: 24px
-}
-
-.steps {
-    display: flex;
-    gap: 18px;
-    flex-wrap: nowrap;
-    justify-content: space-between
-}
-
-.pricing-grid {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-top: 18px
-}
-
-.contact-form input,.contact-form textarea {
     width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid rgba(13,148,136,.25);
-    background: #fff6
+    height: 40px;
 }
 
-.site-footer {
+.SignerDigitalExtSpan {
     text-align: center;
-    padding: 28px 0;
-    color: var(--muted);
-    font-size: 14px
+    font-size: 24px;
+    color: #333;
 }
 
-@media(max-width: 900px) {
-    .hero {
-        flex-direction:column;
-        padding: 40px 0
-    }
-
-    .hero h1 {
-        font-size: 32px
-    }
-
-    .nav-links {
-        display: none
-    }
-
-    .hero-right {
-        order: 2
-    }
-
-    .hero-left {
-        order: 1
-    }
+.SignerDigitalExtCertItem {
+    padding: 5px;
+    border-bottom: 1px solid;
+    margin-bottom: 2px;
+    cursor: pointer;
 }
 
-body.dark .site-header {
-    background: #020617a6;
-    border-bottom: 1px solid rgba(45,212,191,.35)
+.SignerDigitalExtCertItem:hover {
+	background-color: #ccc;
 }
 
-body.dark .nav-links a {
-    color: #e5e7eb
+.SignerDigitalExtCertItem.selected {
+	background-color: #ccc;
+	border-color: #007bff;
 }
 
-body.dark .btn-primary {
-    background: #2dd4bf4d;
-    color: #ecfeff
+.expired {
+    color: red;
+    font-weight: bold;
 }
 
-body.dark .btn-ghost {
-    background: #ffffff14;
-    color: #e5e7eb
+.SignerDigitalExtButton {
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+.SignerDigitalExtLicSitesImg {
+	padding-top: 10px;
+	display: flex;
+	justify-content: center;
 }
 
-body.dark .upload-preview,body.dark .step,body.dark .plan {
-    background: #0f172a8c;
-    border-color: #2dd4bf59
+.SignerDigitalExtLicSitesSpan {
+	font-size: 18px;
+	font-weight: bold;
 }
 
-body.dark .contact-form input,body.dark .contact-form textarea {
-    background: #02061799;
-    color: #e5e7eb;
-    border-color: #2dd4bf59
+.SignerDigitalExtLicSitesContainer {
+	font-family: Calibri, sans-serif;
+	background-color: #e6faf6;
+	border: 1px solid black;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin: 30px auto;
+	width: 550px;
+	height: 500px;
 }
 
-.reveal {
-    opacity: 1;
-    transform: translateY(20px)
+.SignerDigitalExtLicSitesHeader {
+	font-size: 16px;
+	display: flex;
+	justify-content: space-between;
+	background-color: white;
+	padding: 5px;
+	border-bottom: 1px solid #ddd;
 }
 
-.reveal.active {
-    transform: translateY(0);
-    transition: transform .8s ease
+.SignerDigitalExtLicSitesParagraph {
+	padding-left: 15px;
+	padding-top: 20px;
+	font-size: 14px;
 }
 
-@media(prefers-reduced-motion:reduce) {
-    .reveal {
-        opacity: 1;
-        transform: none;
-        transition: none
-    }
+.SignerDigitalExtLicSitesDiv {
+	display: flex;
+	justify-content:center;
+	padding: 10px;
 }
 
-.glass-frame {
-    position: relative;
-    max-width: 1600px;
-    min-height: 75vh;
-    margin: 32px auto;
-    padding: 48px 72px;
-    border-radius: 28px;
-    background: #ffffff0f;
-    backdrop-filter: blur(26px) saturate(160%);
-    -webkit-backdrop-filter: blur(26px) saturate(160%);
-    border: 1.5px solid rgba(45,212,191,.35);
-    box-shadow: 0 0 0 1px #2dd4bf1f,0 30px 80px #00000059
+.SignerDigitalExtLicSitesBtn {
+	width: 100px;
+	padding: 3px;
+	font-weight: 600;
+	font-size: 12px;
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-@media(max-width: 900px) {
-    .glass-frame {
-        width:100%;
-        max-width: 100%;
-        min-height: auto;
-        margin: 0;
-        padding: 20px 16px;
-        border-radius: 18px;
-        transform: none
-    }
-}
 
-body:before,body:after {
-    content: "";
-    position: fixed;
-    width: 420px;
-    height: 420px;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: .35;
-    z-index: -1;
-    pointer-events: none
-}
+ .SignerDigitalExtLicSitesTable {
+     width: 100%;
+     background-color: white;
+     border-collapse: collapse;
+ }
 
-body:before {
-    top: -120px;
-    left: -120px;
-    background: #2dd4bf99
-}
+	
+ .SignerDigitalExtLicSitesTd {
+	 padding: 5px !important;
+     width: 140px;
+     border: 1px solid #ddd;
+     text-align: left;
+	 vertical-align:middle;
+ }
+ .SignerDigitalExtLicSitesTdd {
+     border: 1px solid #ddd;
+     text-align: center;
+ }
 
-body:after {
-    bottom: -140px;
-    right: -140px;
-    background: #38bdf873
-}
-
-body {
-    position: relative
-}
-
-body:after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image: radial-gradient(rgba(45,212,191,.15) .6px,transparent .6px);
-    background-size: 22px 22px;
-    opacity: .15;
-    pointer-events: none;
-    z-index: -2
-}
-
-body:before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -3;
-    background: radial-gradient(1200px 600px at 50% 20%,rgba(45,212,191,.18),transparent 60%),radial-gradient(900px 500px at 10% 80%,rgba(56,189,248,.14),transparent 60%),linear-gradient(to bottom,rgba(0,0,0,.05),transparent 25%,transparent 75%,rgba(0,0,0,.08))
-}
-
-@media(max-width: 768px) {
-    .nav-inner {
-        padding:12px 16px
-    }
-
-    .nav-links {
-        display: none
-    }
-
-    .brand {
-        gap: 8px
-    }
-
-    .logo-img {
-        width: 32px;
-        height: 32px
-    }
-
-    .nav-actions {
-        gap: 8px
-    }
-}
-
-@media(max-width: 768px) {
-    .hero,.hero-card,.glass {
-        width:100%;
-        margin: 0 auto;
-        padding: 20px 16px
-    }
-
-    .hero h1 {
-        font-size: 24px;
-        line-height: 1.3
-    }
-
-    .hero p {
-        font-size: 14px
-    }
-
-    .hero-actions {
-        display: flex;
-        flex-direction: column;
-        gap: 12px
-    }
-
-    .hero-actions button,.hero-actions a {
-        width: 100%;
-        text-align: center
-    }
-}
-
-@media(max-width: 768px) {
-    .container,.main,.glass,.glass-frame,.homepage {
-        width:100%;
-        max-width: 100vw;
-        margin: 0 auto;
-        padding-left: 16px;
-        padding-right: 16px;
-        box-sizing: border-box
-    }
-
-    body {
-        overflow-x: hidden
-    }
-}
-
-@media(max-width: 900px) {
-    .steps {
-        flex-direction:column;
-        flex-wrap: nowrap;
-        gap: 16px
-    }
-}
-  </style>
+ .SignerDigitalExtLicSitesTh {
+     border: 1px solid #ddd;
+     background-color: #f4f4f4;
+	 line-height:1;
+     width: 100px;
+     text-align: left;
+	 margin-top:5px;
+     padding: 5px;
+ }
+.SignerDigitalExtLicSitesScroll {
+     max-height: 200px;
+     overflow-y: auto;
+ }
+ .SignerDigitalExtLicSitesDltbtn {
+     color: white;
+     background-color: #e42424;
+     border: 1px solid black;
+     cursor: pointer;
+     border-radius: 4px;
+ }
+ .SignerDigitalExtLicSitesDltbtn:hover {
+         background-color: darkred;
+ }
+</style>
+<link rel="stylesheet" crossorigin="" href="/assets/index-CS3dEFOr.css">
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="brand">CamPrint</div>
-    <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">Print Services</a>
-      <a href="#">Stationery</a>
-      <a href="#">Orders</a>
-      <a href="#">Contact</a>
-    </div>
-  </nav>
-
-  <!-- PAGE CONTENT -->
-  <div class="page-wrapper">
-    <div class="print-card">
-      <h2>Print Styling & Time Slot</h2>
-      <p class="subtitle">Choose how you want your document printed</p>
-
-      <div class="preview-box">
-        <p>Document Preview</p>
-        <img src="sample-preview.png" class="preview-image" id="docPreview">
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="logo-mark"></div>
+        CamPrint
       </div>
 
-      <label>Number of Copies</label>
-      <select id="copies">
-        <option>1</option>
-        <option>2</option>
-        <option>5</option>
-        <option>10</option>
-        <option>20</option>
-        <option>50</option>
-      </select>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Print</a></li>
+        <li><a href="#">Stationery</a></li>
+        <li><a href="#">Orders</a></li>
+      </ul>
 
-      <label>Print Type</label>
-      <select id="printType">
-        <option>Black & White</option>
-        <option>Colour</option>
-      </select>
+      <div class="nav-actions">
+        <button class="btn btn-ghost">Login</button>
+        <button class="btn btn-primary">Get Started</button>
+      </div>
+    </div>
+  </header>
 
-      <label>Paper Size</label>
-      <select id="paperSize">
-        <option>A4</option>
-        <option>A3</option>
-      </select>
+  <!-- MAIN WRAPPER -->
+  <main class="auth-wrapper">
+    <div class="auth-container">
 
-      <label>Time Slot</label>
-      <select id="timeSlot">
-        <option value="">Select Time Slot</option>
-      </select>
+      <!-- LEFT CARD : PREVIEW -->
+      <div class="auth-card">
+        <h2>Document Preview</h2>
 
-      <div class="price-box">
-        <span>Total Price</span>
-        <span id="price">₹0</span>
+        <div class="upload-preview">
+          <img
+            src="sample-preview.png"
+            alt="Uploaded document preview"
+            style="width:100%;max-height:360px;object-fit:contain;border-radius:12px"
+            id="docPreview"
+          />
+        </div>
+
+        <p class="muted">
+          Please verify your document before proceeding to print.
+        </p>
       </div>
 
-      <button onclick="confirmOrder()">Confirm Print Options</button>
-    </div>
-  </div>
+      <!-- RIGHT CARD : PRINT OPTIONS -->
+      <div class="auth-card">
+        <h2>Print Settings</h2>
 
-  <footer>
-    © 2025 CamPrint Stationery & Print Services
+        <label>Number of Copies</label>
+        <input type="number" id="copies" min="1" value="1" />
+
+        <label>Print Type</label>
+        <select id="printType">
+          <option>Black & White</option>
+          <option>Colour</option>
+        </select>
+
+        <label>Paper Size</label>
+        <select id="paperSize">
+          <option>A4</option>
+          <option>A3</option>
+        </select>
+
+        <label>Pickup Time Slot</label>
+        <select id="timeSlot">
+          <option value="">Select Time Slot</option>
+        </select>
+
+        <div class="dash-card">
+          <h3>Total Price</h3>
+          <p id="price">₹0</p>
+        </div>
+
+        <button class="btn btn-primary" onclick="confirmOrder()">
+          Confirm Print
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    © 2025 CamPrint — Smart Stationery & Print Services
   </footer>
 
+  <!-- SCRIPT -->
   <script>
     const PRICE_CHART = {
       A4: { "Black & White": 1, Colour: 5 },
@@ -728,12 +336,12 @@ body:before {
         alert("Please select a time slot.");
         return;
       }
-      alert("Order confirmed! Thank you for choosing CamPrint.");
+      alert("Print order confirmed. Thank you for choosing CamPrint!");
     }
 
-    copiesEl.onchange = updatePrice;
-    printTypeEl.onchange = updatePrice;
-    paperSizeEl.onchange = updatePrice;
+    copiesEl.addEventListener("input", updatePrice);
+    printTypeEl.addEventListener("change", updatePrice);
+    paperSizeEl.addEventListener("change", updatePrice);
 
     generateTimeSlots();
     updatePrice();
