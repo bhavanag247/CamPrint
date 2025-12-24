@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Print Styling & Time Slot</title>
+  <title>CamPrint | Print Styling & Time Slot</title>
 
   <style>
     * {
@@ -13,9 +13,42 @@
 
     body {
       font-family: "Inter", "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+      background: #f3f4f6;
       color: #111827;
-      min-height: 100vh;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    .navbar {
+      background: #111827;
+      color: white;
+      padding: 14px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #3b82f6;
+    }
+
+    .nav-links a {
+      color: #e5e7eb;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #3b82f6;
+    }
+
+    /* ---------- PAGE LAYOUT ---------- */
+    .page-wrapper {
+      min-height: calc(100vh - 64px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -24,27 +57,33 @@
 
     .print-card {
       width: 100%;
-      max-width: 720px;
+      max-width: 760px;
       background: #ffffff;
       border-radius: 14px;
-      padding: 28px 32px;
+      padding: 30px 34px;
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
     }
 
     h2 {
       font-size: 22px;
       font-weight: 600;
-      margin-bottom: 22px;
-      color: #1f2937;
+      margin-bottom: 6px;
     }
 
+    .subtitle {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 22px;
+    }
+
+    /* ---------- PREVIEW ---------- */
     .preview-box {
       text-align: center;
       margin-bottom: 24px;
     }
 
     .preview-box p {
-      font-size: 14px;
+      font-size: 13px;
       color: #6b7280;
       margin-bottom: 8px;
     }
@@ -58,6 +97,7 @@
       background: #f9fafb;
     }
 
+    /* ---------- FORM ---------- */
     label {
       display: block;
       margin-top: 14px;
@@ -78,28 +118,25 @@
       transition: 0.2s ease;
     }
 
-    select:hover {
-      border-color: #9ca3af;
-    }
-
     select:focus {
       border-color: #2563eb;
       box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
     }
 
+    /* ---------- PRICE ---------- */
     .price-box {
-      margin: 20px 0;
+      margin: 22px 0;
       padding: 14px;
-      background: #f0f9ff;
+      background: #eff6ff;
       border-radius: 10px;
       font-size: 17px;
       font-weight: 600;
-      color: #0369a1;
+      color: #1d4ed8;
       display: flex;
       justify-content: space-between;
-      align-items: center;
     }
 
+    /* ---------- BUTTON ---------- */
     button {
       width: 100%;
       padding: 14px;
@@ -118,18 +155,18 @@
       box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
     }
 
-    button:active {
-      transform: translateY(0);
-      box-shadow: none;
+    /* ---------- FOOTER ---------- */
+    footer {
+      text-align: center;
+      padding: 14px;
+      font-size: 13px;
+      color: #6b7280;
+      background: #f9fafb;
     }
 
     @media (max-width: 600px) {
       .print-card {
-        padding: 22px;
-      }
-
-      h2 {
-        font-size: 20px;
+        padding: 24px;
       }
     }
   </style>
@@ -137,55 +174,68 @@
 
 <body>
 
-  <div class="print-card">
-    <h2>Step 5: Print Styling & Time Slot</h2>
-
-    <!-- Preview -->
-    <div class="preview-box">
-      <p>Reference Preview</p>
-      <img
-        src="sample-preview.png"
-        alt="Document Preview"
-        class="preview-image"
-      />
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="brand">CamPrint</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Print Services</a>
+      <a href="#">Stationery</a>
+      <a href="#">Orders</a>
+      <a href="#">Contact</a>
     </div>
+  </nav>
 
-    <!-- Options -->
-    <label>Number of Copies</label>
-    <select id="copies">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="5">5</option>
-      <option value="10">10</option>
-      <option value="20">20</option>
-      <option value="50">50</option>
-    </select>
+  <!-- PAGE CONTENT -->
+  <div class="page-wrapper">
+    <div class="print-card">
+      <h2>Print Styling & Time Slot</h2>
+      <p class="subtitle">Choose how you want your document printed</p>
 
-    <label>Print Type</label>
-    <select id="printType">
-      <option>Black & White</option>
-      <option>Colour</option>
-    </select>
+      <div class="preview-box">
+        <p>Document Preview</p>
+        <img src="sample-preview.png" class="preview-image" id="docPreview">
+      </div>
 
-    <label>Paper Size</label>
-    <select id="paperSize">
-      <option>A4</option>
-      <option>A3</option>
-    </select>
+      <label>Number of Copies</label>
+      <select id="copies">
+        <option>1</option>
+        <option>2</option>
+        <option>5</option>
+        <option>10</option>
+        <option>20</option>
+        <option>50</option>
+      </select>
 
-    <label>Time Slot (15 min intervals)</label>
-    <select id="timeSlot">
-      <option value="">Select Time Slot</option>
-    </select>
+      <label>Print Type</label>
+      <select id="printType">
+        <option>Black & White</option>
+        <option>Colour</option>
+      </select>
 
-    <!-- Price -->
-    <div class="price-box">
-      <span>Total Price</span>
-      <span id="price">₹0</span>
+      <label>Paper Size</label>
+      <select id="paperSize">
+        <option>A4</option>
+        <option>A3</option>
+      </select>
+
+      <label>Time Slot</label>
+      <select id="timeSlot">
+        <option value="">Select Time Slot</option>
+      </select>
+
+      <div class="price-box">
+        <span>Total Price</span>
+        <span id="price">₹0</span>
+      </div>
+
+      <button onclick="confirmOrder()">Confirm Print Options</button>
     </div>
-
-    <button onclick="confirmOrder()">Confirm Print Options</button>
   </div>
+
+  <footer>
+    © 2025 CamPrint Stationery & Print Services
+  </footer>
 
   <script>
     const PRICE_CHART = {
@@ -202,22 +252,19 @@
     function generateTimeSlots() {
       for (let h = 9; h < 18; h++) {
         for (let m = 0; m < 60; m += 15) {
-          const hour = String(h).padStart(2, "0");
-          const min = String(m).padStart(2, "0");
-          const option = document.createElement("option");
-          option.value = `${hour}:${min}`;
-          option.textContent = `${hour}:${min}`;
-          timeSlotEl.appendChild(option);
+          const opt = document.createElement("option");
+          opt.value = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+          opt.textContent = opt.value;
+          timeSlotEl.appendChild(opt);
         }
       }
     }
 
     function updatePrice() {
-      const copies = Number(copiesEl.value);
-      const type = printTypeEl.value;
-      const size = paperSizeEl.value;
-      const basePrice = PRICE_CHART[size][type];
-      priceEl.textContent = `₹${basePrice * copies}`;
+      const price =
+        PRICE_CHART[paperSizeEl.value][printTypeEl.value] *
+        Number(copiesEl.value);
+      priceEl.textContent = `₹${price}`;
     }
 
     function confirmOrder() {
@@ -225,13 +272,12 @@
         alert("Please select a time slot.");
         return;
       }
-
-      alert("Print options confirmed successfully!");
+      alert("Order confirmed! Thank you for choosing CamPrint.");
     }
 
-    copiesEl.addEventListener("change", updatePrice);
-    printTypeEl.addEventListener("change", updatePrice);
-    paperSizeEl.addEventListener("change", updatePrice);
+    copiesEl.onchange = updatePrice;
+    printTypeEl.onchange = updatePrice;
+    paperSizeEl.onchange = updatePrice;
 
     generateTimeSlots();
     updatePrice();
