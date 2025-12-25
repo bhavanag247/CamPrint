@@ -1,0 +1,344 @@
+.SignerDigitalExtPopupModal {
+	font-family: Calibri, sans-serif;
+	display: none;
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+	display: flex;
+	left: 0;
+	top: 0;
+	position: fixed;
+	z-index: 9999;
+}
+
+.SignerDigitalExtClose {
+    position: absolute;
+    top: 30px;
+    right: 525px;
+    background: none;
+    border: none;
+    color: black;
+    font-size: 25px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+.SignerDigitalExtLicSitesClose {
+	background: none;
+	border: none;
+	color: black;
+	font-size: 25px;
+	cursor: pointer;
+	line-height:1;
+	transition: color 0.3s ease-in-out;
+}
+
+.SignerDigitalExtSelCertContainer {
+    font-family: Calibri, sans-serif;
+    background-color: #e6faf6;
+    top: 50px;
+	position: relative;
+	padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 30px auto;
+    width: 420px;
+    height: 420px;
+}
+
+.SignerDigitalExtSCPinContainer {
+    font-family: Calibri, sans-serif;
+    background-color: #e6faf6;
+    top: 50px;
+	position: relative;
+	padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 30px auto;
+    width: 360px;
+    height: 180px;
+}
+
+#SDCertListContainer {
+    margin-top: 10px;
+    max-height: 300px;
+    background-color: white;
+    overflow-y: auto;
+    padding: 0px;
+    border-radius: 5px;
+}
+
+
+.SignerDigitalExtImg {
+    text-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+}
+
+.SignerDigitalExtSpan {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+}
+
+.SignerDigitalExtCertItem {
+    padding: 5px;
+    border-bottom: 1px solid;
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+
+.SignerDigitalExtCertItem:hover {
+	background-color: #ccc;
+}
+
+.SignerDigitalExtCertItem.selected {
+	background-color: #ccc;
+	border-color: #007bff;
+}
+
+.expired {
+    color: red;
+    font-weight: bold;
+}
+
+.SignerDigitalExtButton {
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+.SignerDigitalExtLicSitesImg {
+	padding-top: 10px;
+	display: flex;
+	justify-content: center;
+}
+
+.SignerDigitalExtLicSitesSpan {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.SignerDigitalExtLicSitesContainer {
+	font-family: Calibri, sans-serif;
+	background-color: #e6faf6;
+	border: 1px solid black;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin: 30px auto;
+	width: 550px;
+	height: 500px;
+}
+
+.SignerDigitalExtLicSitesHeader {
+	font-size: 16px;
+	display: flex;
+	justify-content: space-between;
+	background-color: white;
+	padding: 5px;
+	border-bottom: 1px solid #ddd;
+}
+
+.SignerDigitalExtLicSitesParagraph {
+	padding-left: 15px;
+	padding-top: 20px;
+	font-size: 14px;
+}
+
+.SignerDigitalExtLicSitesDiv {
+	display: flex;
+	justify-content:center;
+	padding: 10px;
+}
+
+.SignerDigitalExtLicSitesBtn {
+	width: 100px;
+	padding: 3px;
+	font-weight: 600;
+	font-size: 12px;
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+ .SignerDigitalExtLicSitesTable {
+     width: 100%;
+     background-color: white;
+     border-collapse: collapse;
+ }
+
+	
+ .SignerDigitalExtLicSitesTd {
+	 padding: 5px !important;
+     width: 140px;
+     border: 1px solid #ddd;
+     text-align: left;
+	 vertical-align:middle;
+ }
+ .SignerDigitalExtLicSitesTdd {
+     border: 1px solid #ddd;
+     text-align: center;
+ }
+
+ .SignerDigitalExtLicSitesTh {
+     border: 1px solid #ddd;
+     background-color: #f4f4f4;
+	 line-height:1;
+     width: 100px;
+     text-align: left;
+	 margin-top:5px;
+     padding: 5px;
+ }
+.SignerDigitalExtLicSitesScroll {
+     max-height: 200px;
+     overflow-y: auto;
+ }
+ .SignerDigitalExtLicSitesDltbtn {
+     color: white;
+     background-color: #e42424;
+     border: 1px solid black;
+     cursor: pointer;
+     border-radius: 4px;
+ }
+ .SignerDigitalExtLicSitesDltbtn:hover {
+         background-color: darkred;
+ }
+/* ---------- MODAL OVERLAY ---------- */
+.print-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ---------- MODAL CONTENT ---------- */
+.print-modal-content {
+  width: 95%;
+  max-width: 900px;
+  max-height: 95vh;
+  overflow-y: auto;
+  background: #f3f4f6;
+  border-radius: 14px;
+  position: relative;
+}
+
+/* ---------- CLOSE BUTTON ---------- */
+.print-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #111827;
+  font-weight: bold;
+}
+.dashboard-wrapper {
+  min-height: 100vh;
+  padding: 40px 30px;
+}
+
+.dashboard-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.dash-card {
+  padding: 30px;
+  border-radius: 18px;
+
+  /* Glass background */
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  /* FIX: stronger visible outline */
+  border: 1px solid rgba(0, 128, 128, 0.25);
+
+  /* FIX: subtle separation shadow */
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.08),
+    inset 0 0 0.5px rgba(255, 255, 255, 0.6);
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+
+body.dark .dash-card {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.6),
+    inset 0 0 0.5px rgba(255, 255, 255, 0.08);
+}
+
+
+.dash-card h3 {
+  margin-bottom: 6px;
+}
+
+.dash-card p {
+  opacity: 0.85;
+}
+
+.dash-card input[type="file"] {
+  margin-top: 10px;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px dashed currentColor;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Selected file name handling */
+.file-name {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  max-width: 100%;
+}
+
+.file-name span {
+  max-width: 160px;   /* adjust if needed */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.file-item span {
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
