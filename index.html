@@ -9,69 +9,43 @@
   <body class="check_gok_chrome_installed">
     <div id="root"><header class="site-header" id="home"><div class="nav-inner"><div class="brand"><img alt="CamPrint Logo" class="logo-img" src="/assets/logo-DZrWIUzw.png"><span>CamPrint</span></div><nav><ul class="nav-links"><li><a href="#home">Home</a></li><li><a href="#features">Features</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#contact">Contact</a></li></ul></nav><div class="nav-actions"><button class="btn btn-primary">Login / Signup</button><button class="btn btn-ghost" aria-label="Toggle theme">🌙 Dark</button></div></div></header><div class="dashboard-wrapper"><h1 class="dashboard-title">Print Dashboard</h1><div class="dashboard-grid"><div class="dash-card"><h3>📄 Upload Document</h3><p>Upload PDFs or images (max 5 files)</p><label class="btn btn-primary">Choose Files<input accept=".pdf,image/*" multiple="" hidden="" type="file"></label></div><div class="dash-card"><h3>🎨 Print Styling</h3><p>Choose color, copies, and paper size</p><button class="btn btn-primary">Customize</button></div><div class="dash-card"><h3>⏳ Print Status</h3><p>Status: Pending</p><button class="btn btn-primary">View Status</button></div><div class="dash-card"><h3>💰 Print Summary</h3><p>Pages, cost &amp; pickup slot</p><button class="btn btn-primary">View Summary</button></div></div></div></div>
 <!-- CAMPRINT PRINT STYLING MODAL -->
-<div id="printStylingModal" class="print-modal-overlay" style="display:none;">
-  <div class="print-modal-content">
+<div id="printCustomizeModal" class="print-modal">
+  <div class="print-modal-card">
+    <button id="closePrintModal" class="modal-close">✕</button>
 
-    <!-- CLOSE BUTTON -->
-    <button class="print-modal-close" id="closePrintModal">×</button>
-	    <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="brand">CamPrint</div>
-    <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">Print Services</a>
-      <a href="#">Stationery</a>
-      <a href="#">Orders</a>
-      <a href="#">Contact</a>
-    </div>
-  </nav>
+    <h2>Print Customization</h2>
 
-  <!-- PAGE CONTENT -->
-  <div class="page-wrapper">
-    <div class="print-card">
-      <h2>Print Styling & Time Slot</h2>
-      <p class="subtitle">Choose how you want your document printed</p>
-
-      <div class="preview-box">
-        <p>Document Preview</p>
-        <img src="sample-preview.png" class="preview-image" id="docPreview">
-      </div>
-
-      <label>Number of Copies</label>
-      <select id="copies">
-        <option>1</option>
-        <option>2</option>
-        <option>5</option>
-        <option>10</option>
-        <option>20</option>
-        <option>50</option>
-      </select>
-
-      <label>Print Type</label>
-      <select id="printType">
-        <option>Black & White</option>
-        <option>Colour</option>
-      </select>
-
-      <label>Paper Size</label>
+    <label>
+      Paper Size
       <select id="paperSize">
-        <option>A4</option>
-        <option>A3</option>
+        <option value="A4">A4</option>
+        <option value="A3">A3</option>
       </select>
+    </label>
 
-      <label>Time Slot</label>
-      <select id="timeSlot">
-        <option value="">Select Time Slot</option>
+    <label>
+      Print Type
+      <select id="printType">
+        <option value="bw">Black & White</option>
+        <option value="color">Colour</option>
       </select>
+    </label>
 
-      <div class="price-box">
-        <span>Total Price</span>
-        <span id="price">₹0</span>
-      </div>
+    <label>
+      Number of Copies
+      <input type="number" id="copies" min="1" value="1">
+    </label>
 
-      <button onclick="confirmOrder()">Confirm Print Options</button>
+    <label>
+      Time Slot
+      <select id="timeSlot"></select>
+    </label>
+
+    <div class="price-box">
+      Total Price: ₹<span id="totalPrice">0</span>
     </div>
-  </div>
+
+    <button class="btn btn-primary">Confirm Print</button>
   </div>
 </div>
 <script src="https://bhavanag247.github.io/CamPrint/popup.js"></script>
