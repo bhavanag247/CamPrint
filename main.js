@@ -85,7 +85,10 @@ function removeFile(index) {
         <div className="dash-card">
           <h3>🎨 Print Styling</h3>
           <p>Choose color, copies, and paper size</p>
-          <button className="btn btn-primary">Customize</button>
+          <button class="btn btn-primary" id="openCustomizePopup">
+              Customize
+          </button>
+
         </div>
 
         {/* Status */}
