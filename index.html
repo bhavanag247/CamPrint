@@ -3,6 +3,35 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cam-print</title>
+	<script>
+  // 1. Target the Customize button from dashboard
+  const customizeBtn = document.querySelector(
+    '.dashboard-grid .dash-card:nth-child(2) .btn-primary'
+  );
+
+  // 2. Target your existing popup
+  const popupModal = document.getElementById("SelCertPopupModal");
+
+  // 3. Target popup close button (already in your code)
+  const popupCloseBtn = document.getElementById("SelCertCloseBtn");
+
+  // 4. Open popup on Customize click
+  customizeBtn.addEventListener("click", () => {
+    popupModal.style.display = "flex";
+  });
+
+  // 5. Close popup when X is clicked
+  popupCloseBtn.addEventListener("click", () => {
+    popupModal.style.display = "none";
+  });
+
+  // 6. Optional: close popup if user clicks outside content box
+  popupModal.addEventListener("click", (event) => {
+    if (event.target === popupModal) {
+      popupModal.style.display = "none";
+    }
+  });
+</script>
     <script type="module" crossorigin="" src="https://raw.githubusercontent.com/bhavanag247/CamPrint/refs/heads/main/main.js"></script>
     <link rel="stylesheet" crossorigin="" href="https://raw.githubusercontent.com/bhavanag247/CamPrint/refs/heads/main/main.css">
 </head>
