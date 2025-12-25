@@ -1,8 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>CamPrint | Print Styling</title>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cam-print</title>
+    <script type="module" crossorigin="" src="/assets/index-BR-0PzWb.js"></script>
+	<script>
+  const customizeBtn = document.querySelector(
+    '.dash-card:nth-child(2) .btn-primary'
+  );
+
+  const modal = document.getElementById("printStylingModal");
+  const closeBtn = document.getElementById("closePrintModal");
+
+  customizeBtn.addEventListener("click", () => {
+    modal.style.display = "flex";
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+</script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-CS3dEFOr.css">
   <style>
 .SignerDigitalExtPopupModal {
 	font-family: Calibri, sans-serif;
@@ -208,144 +232,187 @@
  .SignerDigitalExtLicSitesDltbtn:hover {
          background-color: darkred;
  }
+/* ---------- MODAL OVERLAY ---------- */
+.print-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ---------- MODAL CONTENT ---------- */
+.print-modal-content {
+  width: 95%;
+  max-width: 900px;
+  max-height: 95vh;
+  overflow-y: auto;
+  background: #f3f4f6;
+  border-radius: 14px;
+  position: relative;
+}
+
+/* ---------- CLOSE BUTTON ---------- */
+.print-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #111827;
+  font-weight: bold;
+}
 </style>
-<link rel="stylesheet" crossorigin="" href="/assets/index-CS3dEFOr.css">
 </head>
+  <body class="check_gok_chrome_installed">
+    <div id="root"><header class="site-header" id="home"><div class="nav-inner"><div class="brand"><img alt="CamPrint Logo" class="logo-img" src="/assets/logo-DZrWIUzw.png"><span>CamPrint</span></div><nav><ul class="nav-links"><li><a href="#home">Home</a></li><li><a href="#features">Features</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#contact">Contact</a></li></ul></nav><div class="nav-actions"><button class="btn btn-primary">Login / Signup</button><button class="btn btn-ghost" aria-label="Toggle theme">🌙 Dark</button></div></div></header><div class="dashboard-wrapper"><h1 class="dashboard-title">Print Dashboard</h1><div class="dashboard-grid"><div class="dash-card"><h3>📄 Upload Document</h3><p>Upload PDFs or images (max 5 files)</p><label class="btn btn-primary">Choose Files<input accept=".pdf,image/*" multiple="" hidden="" type="file"></label></div><div class="dash-card"><h3>🎨 Print Styling</h3><p>Choose color, copies, and paper size</p><button class="btn btn-primary">Customize</button></div><div class="dash-card"><h3>⏳ Print Status</h3><p>Status: Pending</p><button class="btn btn-primary">View Status</button></div><div class="dash-card"><h3>💰 Print Summary</h3><p>Pages, cost &amp; pickup slot</p><button class="btn btn-primary">View Summary</button></div></div></div></div>
+  
 
-<body>
+</body><div id="SelCertPopupModal" class="SignerDigitalExtPopupModal" style="display:none;">
+    <div class="SignerDigitalExtSelCertContainer">
+        <button id="SelCertCloseBtn" class="SignerDigitalExtClose">x</button>
+		<div class="SignerDigitalExtImg">
+			<img id="SDIconSelCert" alt="Globe icon" height="32" width="32" src="chrome-extension://glghokcicpikglmflbbelbgeafpijkkf/icon32.png">&nbsp;&nbsp;&nbsp;
+			<span class="SignerDigitalExtSpan" style="text-align:center;">Select Certificate</span>
+		</div>		
+		<div style="height: 310px; width: 100%; border-bottom: 1px solid black;background-color:white;">
+			<div style="max-height: 310px; overflow-y: auto;">
+				<div id="SDCertListContainer"></div>
+			</div>
+		</div>
+		<div class="SignerDigitalExtButton">
+			<button id="SelCertOkBtn" style="width: 80px">OK</button>
+			<button id="SelCertCancelBtn" style="margin-left:15px; width: 80px;">Cancel</button>
+		</div>
+	</div>
+</div>
+<div id="SdExtSCPinPopupModal" class="SignerDigitalExtPopupModal" style="display:none;">
+    <div class="SignerDigitalExtSCPinContainer">
+		<form>
+			<div class="SignerDigitalExtImg" style="border-bottom: 1px solid black;">
+				<img id="SDIconSCPin" alt="Globe icon" height="32" width="32" src="chrome-extension://glghokcicpikglmflbbelbgeafpijkkf/icon32.png">&nbsp;&nbsp;&nbsp;
+				<span class="SignerDigitalExtSpan" style="text-align:center;">Smartcard / Token User Pin</span>
+			</div>
+			<div style="text-align:center; padding-top:25px; padding-bottom:25px; font-size:14px;">User PIN:&nbsp;&nbsp;&nbsp;<input id="SdExtUserPin" type="password">
+			</div>
+			<div class="SignerDigitalExtButton" style="border-top: 1px solid black;">
+				<button id="SdScPinOkBtn" type="button" style="width: 80px">OK</button>
+				<button id="SdSCPinCancelBtn" type="button" style="margin-left:15px; width: 80px;">Cancel</button>
+			</div>
+		</form>
+	</div>
+</div>
+<div id="LicSitesPopupModal" class="SignerDigitalExtPopupModal" style="display:none;">
+	<div class="SignerDigitalExtLicSitesContainer">
+		<div class="SignerDigitalExtLicSitesHeader">
+			<span style="margin:10px;">Signer.Digital</span>
+			<button id="LicSitesCloseBtn" class="SignerDigitalExtLicSitesClose">x</button>
+		</div>
+		<div class="SignerDigitalExtLicSitesImg">
+			<img id="SDIconLicSite" alt="Globe icon" height="32" width="32" src="chrome-extension://glghokcicpikglmflbbelbgeafpijkkf/icon32.png">&nbsp;&nbsp;
+			<span class="SignerDigitalExtLicSitesSpan">Signer.Digital - Confirm Key Listing / Usage</span>
+		</div>
+		<div style="display:none;"><img id="trash_icon_src" src="chrome-extension://glghokcicpikglmflbbelbgeafpijkkf/icon_trash.svg"></div>
+		<div class="SignerDigitalExtLicSitesParagraph">
+			<span id="currentDomainLink" style="font-size:18px;font-weight:600;">Current Domain</span><br>
+			is trying to detect smartcards connected, or read certificate or use key for signing/encryption. Please
+			select your option.
+		</div>
+		<div class="SignerDigitalExtLicSitesDiv">
+			<button id="denyBtn" class="SignerDigitalExtLicSitesBtn">Deny</button>
+			<button id="alwaysallowBtn" class="SignerDigitalExtLicSitesBtn" style="margin-left:30px;" title="Allow access to Check Vendor License for Site.">Always Allow</button>
+		</div>
+		<div style="padding: 10px; text-align: center; ">
+			<strong style="font-size:18px;">Licensed Sites</strong><br><br>
+			<div style="height: 200px; width: 100%; border: 1px solid black;">
+				<div class="SignerDigitalExtLicSitesScroll">
+					<table class="SignerDigitalExtLicSitesTable">
+						<thead>
+							<tr>
+								<th class="SignerDigitalExtLicSitesTh">Website</th>
+								<th class="SignerDigitalExtLicSitesTh">License Status</th>
+								<th class="SignerDigitalExtLicSitesTh">Features</th>
+								<th class="SignerDigitalExtLicSitesTh" style="width:50px;">Action</th>
+							</tr>
+						</thead>
+						<tbody id="licenseSitesTableBody">
+							<!-- Table rows will be dynamically added here -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<span id="SDLicSitesErrMsg" style="color:red"></span>
+		</div>
+	</div>
+</div>
+<!-- CAMPRINT PRINT STYLING MODAL -->
+<div id="printStylingModal" class="print-modal-overlay" style="display:none;">
+  <div class="print-modal-content">
 
-  <!-- SITE HEADER -->
-  <header class="site-header">
-    <div class="nav-inner">
-      <div class="brand">
-        <div class="logo-mark"></div>
-        CamPrint
-      </div>
-
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Print</a></li>
-        <li><a href="#">Stationery</a></li>
-        <li><a href="#">Orders</a></li>
-      </ul>
-
-      <div class="nav-actions">
-        <button class="btn btn-ghost">Login</button>
-        <button class="btn btn-primary">Get Started</button>
-      </div>
+    <!-- CLOSE BUTTON -->
+    <button class="print-modal-close" id="closePrintModal">×</button>
+	    <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="brand">CamPrint</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Print Services</a>
+      <a href="#">Stationery</a>
+      <a href="#">Orders</a>
+      <a href="#">Contact</a>
     </div>
-  </header>
+  </nav>
 
-  <!-- MAIN WRAPPER -->
-  <main class="auth-wrapper">
-    <div class="auth-container">
+  <!-- PAGE CONTENT -->
+  <div class="page-wrapper">
+    <div class="print-card">
+      <h2>Print Styling & Time Slot</h2>
+      <p class="subtitle">Choose how you want your document printed</p>
 
-      <!-- LEFT CARD : PREVIEW -->
-      <div class="auth-card">
-        <h2>Document Preview</h2>
-
-        <div class="upload-preview">
-          <img
-            src="sample-preview.png"
-            alt="Uploaded document preview"
-            style="width:100%;max-height:360px;object-fit:contain;border-radius:12px"
-            id="docPreview"
-          />
-        </div>
-
-        <p class="muted">
-          Please verify your document before proceeding to print.
-        </p>
+      <div class="preview-box">
+        <p>Document Preview</p>
+        <img src="sample-preview.png" class="preview-image" id="docPreview">
       </div>
 
-      <!-- RIGHT CARD : PRINT OPTIONS -->
-      <div class="auth-card">
-        <h2>Print Settings</h2>
+      <label>Number of Copies</label>
+      <select id="copies">
+        <option>1</option>
+        <option>2</option>
+        <option>5</option>
+        <option>10</option>
+        <option>20</option>
+        <option>50</option>
+      </select>
 
-        <label>Number of Copies</label>
-        <input type="number" id="copies" min="1" value="1" />
+      <label>Print Type</label>
+      <select id="printType">
+        <option>Black & White</option>
+        <option>Colour</option>
+      </select>
 
-        <label>Print Type</label>
-        <select id="printType">
-          <option>Black & White</option>
-          <option>Colour</option>
-        </select>
+      <label>Paper Size</label>
+      <select id="paperSize">
+        <option>A4</option>
+        <option>A3</option>
+      </select>
 
-        <label>Paper Size</label>
-        <select id="paperSize">
-          <option>A4</option>
-          <option>A3</option>
-        </select>
+      <label>Time Slot</label>
+      <select id="timeSlot">
+        <option value="">Select Time Slot</option>
+      </select>
 
-        <label>Pickup Time Slot</label>
-        <select id="timeSlot">
-          <option value="">Select Time Slot</option>
-        </select>
-
-        <div class="dash-card">
-          <h3>Total Price</h3>
-          <p id="price">₹0</p>
-        </div>
-
-        <button class="btn btn-primary" onclick="confirmOrder()">
-          Confirm Print
-        </button>
+      <div class="price-box">
+        <span>Total Price</span>
+        <span id="price">₹0</span>
       </div>
 
+      <button onclick="confirmOrder()">Confirm Print Options</button>
     </div>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    © 2025 CamPrint — Smart Stationery & Print Services
-  </footer>
-
-  <!-- SCRIPT -->
-  <script>
-    const PRICE_CHART = {
-      A4: { "Black & White": 1, Colour: 5 },
-      A3: { "Black & White": 2, Colour: 10 }
-    };
-
-    const copiesEl = document.getElementById("copies");
-    const printTypeEl = document.getElementById("printType");
-    const paperSizeEl = document.getElementById("paperSize");
-    const timeSlotEl = document.getElementById("timeSlot");
-    const priceEl = document.getElementById("price");
-
-    function generateTimeSlots() {
-      for (let h = 9; h < 18; h++) {
-        for (let m = 0; m < 60; m += 15) {
-          const opt = document.createElement("option");
-          opt.value = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
-          opt.textContent = opt.value;
-          timeSlotEl.appendChild(opt);
-        }
-      }
-    }
-
-    function updatePrice() {
-      const price =
-        PRICE_CHART[paperSizeEl.value][printTypeEl.value] *
-        Number(copiesEl.value);
-      priceEl.textContent = `₹${price}`;
-    }
-
-    function confirmOrder() {
-      if (!timeSlotEl.value) {
-        alert("Please select a time slot.");
-        return;
-      }
-      alert("Print order confirmed. Thank you for choosing CamPrint!");
-    }
-
-    copiesEl.addEventListener("input", updatePrice);
-    printTypeEl.addEventListener("change", updatePrice);
-    paperSizeEl.addEventListener("change", updatePrice);
-
-    generateTimeSlots();
-    updatePrice();
-  </script>
-
-</body>
+  </div>
+  </div>
+</div>
 </html>
