@@ -9,12 +9,11 @@ export default function Uploadbox({
 }) {
   const [dragActive, setDragActive] = useState(false);
 
-  const [printDetails, setPrintDetails] = useState({
-    documentType: "Assignment",
-    priority: "Normal",
-    pageType: "Black & White",
-    numberOfPages: 1
-  });
+  // Print configuration states
+  const [documentType, setDocumentType] = useState("Assignment");
+  const [priority, setPriority] = useState("Normal");
+  const [pageType, setPageType] = useState("A4");
+  const [pageCount, setPageCount] = useState(1);
 
   function handleDrag(e) {
     e.preventDefault();
@@ -44,13 +43,6 @@ export default function Uploadbox({
 
   function browse() {
     inputRef?.current?.click();
-  }
-
-  function handleChange(e) {
-    setPrintDetails({
-      ...printDetails,
-      [e.target.name]: e.target.value
-    });
   }
 
   return (
@@ -104,96 +96,100 @@ export default function Uploadbox({
         style={{
           marginTop: 20,
           padding: 20,
-          borderRadius: 16,
-          background: "rgba(255,255,255,0.15)",
-          border: "1px solid rgba(13,148,136,0.25)"
+          borderRadius: 14,
+          background: "rgba(255,255,255,0.12)",
+          border: "1px solid rgba(13,148,136,0.20)"
         }}
       >
-        <h4 style={{ marginTop: 0 }}>Print Details</h4>
+        <div className="kicker" style={{ marginBottom: 16 }}>
+          Print Options
+        </div>
 
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
             gap: 16
           }}
         >
           <div>
-            <label style={{ display: "block", marginBottom: 8 }}>
-              Type of Document
+            <label style={{ display: "block", marginBottom: 8, fontWeight: 600 }}>
+              📄 Type of Document
             </label>
-
             <select
-              name="documentType"
-              value={printDetails.documentType}
-              onChange={handleChange}
+              value={documentType}
+              onChange={(e) => setDocumentType(e.target.value)}
               className="input"
-              style={{ width: "100%", padding: 12, borderRadius: 10 }}
+              style={{ width: "100%", padding: 10, borderRadius: 10 }}
             >
               <option>Assignment</option>
+              <option>Notes</option>
               <option>Resume</option>
               <option>Project Report</option>
-              <option>Notes</option>
               <option>Presentation</option>
+              <option>Book</option>
             </select>
           </div>
 
           <div>
-            <label style={{ display: "block", marginBottom: 8 }}>
-              Priority
+            <label style={{ display: "block", marginBottom: 8, fontWeight: 600 }}>
+              ⚡ Priority
             </label>
-
             <select
-              name="priority"
-              value={printDetails.priority}
-              onChange={handleChange}
+              value={priority}
+              onChange={(e) => setPriority(e.target.value)}
               className="input"
-              style={{ width: "100%", padding: 12, borderRadius: 10 }}
+              style={{ width: "100%", padding: 10, borderRadius: 10 }}
             >
               <option>Normal</option>
               <option>Urgent</option>
-              <option>Express</option>
+              <option>Same Day Delivery</option>
             </select>
           </div>
 
           <div>
-            <label style={{ display: "block", marginBottom: 8 }}>
-              Type of Pages
+            <label style={{ display: "block", marginBottom: 8, fontWeight: 600 }}>
+              📘 Type of Pages
             </label>
-
             <select
-              name="pageType"
-              value={printDetails.pageType}
-              onChange={handleChange}
+              value={pageType}
+              onChange={(e) => setPageType(e.target.value)}
               className="input"
-              style={{ width: "100%", padding: 12, borderRadius: 10 }}
+              style={{ width: "100%", padding: 10, borderRadius: 10 }}
             >
-              <option>Black & White</option>
-              <option>Colour</option>
-              <option>Single Side</option>
-              <option>Double Side</option>
+              <option>A4</option>
+              <option>A3</option>
+              <option>Letter Size</option>
+              <option>Legal Size</option>
             </select>
           </div>
 
           <div>
-            <label style={{ display: "block", marginBottom: 8 }}>
-              No. of Pages
+            <label style={{ display: "block", marginBottom: 8, fontWeight: 600 }}>
+              🔢 No. of Pages
             </label>
-
             <input
               type="number"
               min="1"
-              name="numberOfPages"
-              value={printDetails.numberOfPages}
-              onChange={handleChange}
-              placeholder="Enter number of pages"
-              style={{
-                width: "100%",
-                padding: 12,
-                borderRadius: 10
-              }}
+              value={pageCount}
+              onChange={(e) => setPageCount(e.target.value)}
+              className="input"
+              style={{ width: "100%", padding: 10, borderRadius: 10 }}
             />
           </div>
+        </div>
+
+        <div
+          style={{
+            marginTop: 20,
+            padding: 14,
+            borderRadius: 12,
+            background: "rgba(13,148,136,0.08)",
+            border: "1px solid rgba(13,148,136,0.15)",
+            fontWeight: 600
+          }}
+        >
+          Estimated Price: ₹{pageCount * 2}
         </div>
       </div>
 
@@ -225,7 +221,7 @@ export default function Uploadbox({
                   maxWidth: 500
                 }}
               >
-                {f.name}
+                📎 {f.name}
               </div>
 
               <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
