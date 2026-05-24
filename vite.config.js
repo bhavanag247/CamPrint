@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/CamPrint-main/', // your repo name
+  base: '/CamPrint/', // your repo name
 })
