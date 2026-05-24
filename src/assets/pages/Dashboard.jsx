@@ -6,7 +6,10 @@ export default function Dashboard() {
   const [showPrintStyling, setShowPrintStyling] = useState(false);
   const [showPrintStatus, setShowPrintStatus] = useState(false);
   const [showPrintSummary, setShowPrintSummary] = useState(false);
-
+  const [documentType, setDocumentType] = useState("Assignment");
+  const [priority, setPriority] = useState("Normal");
+  const [pageType, setPageType] = useState("A4");
+  const [pageCount, setPageCount] = useState(1);
   /* ======================
      FILE UPLOAD LOGIC
      ====================== */
@@ -222,6 +225,55 @@ function saveOrderToLocalStorage(files) {
       <div className="popup-row">
         <label>Copies</label>
         <p>1</p>
+      </div>
+
+      <div className="popup-row">
+        <label>Type of Document</label>
+        <select
+          value={documentType}
+          onChange={(e) => setDocumentType(e.target.value)}
+        >
+          <option>Assignment</option>
+          <option>Notes</option>
+          <option>Resume</option>
+          <option>Project Report</option>
+          <option>Book</option>
+        </select>
+      </div>
+
+      <div className="popup-row">
+        <label>Priority</label>
+        <select
+          value={priority}
+          onChange={(e) => setPriority(e.target.value)}
+        >
+          <option>Normal</option>
+          <option>Urgent</option>
+          <option>Same Day</option>
+        </select>
+      </div>
+
+      <div className="popup-row">
+        <label>Type of Pages</label>
+        <select
+          value={pageType}
+          onChange={(e) => setPageType(e.target.value)}
+        >
+          <option>A4</option>
+          <option>A3</option>
+          <option>Legal</option>
+          <option>Letter</option>
+        </select>
+      </div>
+
+      <div className="popup-row">
+        <label>No. of Pages</label>
+        <input
+          type="number"
+          min="1"
+          value={pageCount}
+          onChange={(e) => setPageCount(e.target.value)}
+        />
       </div>
 
       <div className="popup-row">
