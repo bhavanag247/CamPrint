@@ -1,0 +1,175 @@
+/* =========================
+   AUTH PAGE LAYOUT
+   ========================= */
+
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* Container holding ONLY login card now */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* =========================
+   AUTH CARD (GLASS)
+   ========================= */
+
+.auth-card {
+  flex: 1;
+  max-width: 380px;
+  padding: 30px;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Dark mode override (your original logic preserved) */
+body.dark .auth-card {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* =========================
+   HEADINGS
+   ========================= */
+
+.auth-card h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* =========================
+   INPUTS
+   ========================= */
+
+.auth-card input {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Dark mode inputs */
+body.dark .auth-card input {
+  background: #111;
+  color: #ffffff;
+}
+
+/* Light mode inputs */
+body:not(.dark) .auth-card input {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.auth-card input::placeholder {
+  opacity: 0.7;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.btn {
+  padding: 12px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #06b6d4, #22d3ee);
+  color: #ffffff;
+}
+
+/* =========================
+   OR / SIGNUP LINK
+   ========================= */
+
+.or-text {
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.signup-link {
+  background: none;
+  border: none;
+  color: #38bdf8;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* =========================
+   SIGNUP POPUP
+   ========================= */
+
+.signup-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* Light mode overlay */
+body:not(.dark) .signup-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Popup card reuses auth-card */
+.signup-popup {
+  max-width: 360px;
+  width: 100%;
+}
+
+/* Close button */
+.close-btn {
+  margin-top: 10px;
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 768px) {
+  .auth-container {
+    flex-direction: column;
+  }
+
+  .auth-card {
+    max-width: 100%;
+  }
+}
+
+.auth-error {
+  color: #f87171;
+  font-size: 13px;
+  text-align: center;
+}
